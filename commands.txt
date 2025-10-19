@@ -2,7 +2,8 @@ docker run --name testPostgres -e POSTGRES_PASSWORD=password -e POSTGRES_DB=pds_
 
 -- SETUP --
 python3 -m venv .
-source bin/activate
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+.\Scripts\activate
 pip3 install sqlalchemy
 pip3 install psycopg2-binary
 python3 populate_tables.py
