@@ -18,6 +18,16 @@ def main():
     MED_TABLE = META_DATA.tables["med_data"]
     MED_DI_TABLE = META_DATA.tables["med_data_di"]
     WORK_TABLE = META_DATA.tables["work_data"]
+    try:
+        CONN.execute(MED_TABLE.delete())
+        CONN.execute(MED_DI_TABLE.delete())
+        CONN.execute(WORK_TABLE.delete())
+        CONN.commit()
+        print("Dados existentes apagados com sucesso.")
+    except Exception as e:
+        print(f"Erro ao limpar tabelas: {e}")
+        CONN.rollback()
+        return
 
     with open("./Data/med.csv", 'r') as med_file:
         med_csv = csv.reader(med_file)
@@ -26,17 +36,11 @@ def main():
             row = MED_TABLE.insert().values(id=line[0], name=line[1], age=line[2],
                 address=line[3], email=line[4], gender=line[5], postal_code=line[6],
                 diagnosis=line[7])
+            dirow = MED_DI_TABLE.insert().values(age=line[2], gender=line[5], postal_code=line[6], diagnosis=line[7])
+            CONN.execute(dirow)
             CONN.execute(row)
         CONN.commit()
 
-
-    with open("./Data/med_di.csv", 'r') as med_di_file:
-        med_csv = csv.reader(med_di_file)
-
-        for line in med_csv:
-            row = MED_DI_TABLE.insert().values(id=line[0], age=line[1], gender=line[2], postal_code=line[3], diagnosis=line[4])
-            CONN.execute(row)
-        CONN.commit()   
 
     with open("./Data/work.csv", 'r') as work_file:
         work_csv = csv.reader(work_file)
