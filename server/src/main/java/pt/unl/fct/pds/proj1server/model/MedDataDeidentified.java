@@ -1,7 +1,4 @@
-package pt.unl.fct.pds.proj1server.deidentification;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+package pt.unl.fct.pds.proj1server.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -79,9 +76,5 @@ public final class MedDataDeidentified {
 
   public void setDiagnosis(String diagnosis) {
     this.diagnosis = diagnosis;
-  }
-  
-  @Repository
-  public interface MedDataDeidentifiedRepository extends JpaRepository<MedDataDeidentified, Long> {
   }
 }
