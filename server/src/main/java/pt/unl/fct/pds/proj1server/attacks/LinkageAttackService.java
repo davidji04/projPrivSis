@@ -1,24 +1,40 @@
 package pt.unl.fct.pds.proj1server.attacks;
 
-import java.util.*;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-import org.hibernate.boot.registry.classloading.spi.ClassLoaderService.Work;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import pt.unl.fct.pds.proj1server.deidentification.MedDataDeidentified;
-import pt.unl.fct.pds.proj1server.deidentification.MedDataDeidentified.MedDataDeidentifiedRepository;
+import pt.unl.fct.pds.proj1server.repository.MedDataDeidentifiedRepository;
 import pt.unl.fct.pds.proj1server.repository.WorkDataRepository;
 
+@Service
 public class LinkageAttackService {
 
-  private final MedDataDeidentifiedRepository medRepo;
-  private final WorkDataRepository workRepo;
+    @Autowired
+    private WorkDataRepository workDataRepo;
 
-  public LinkageAttackService(MedDataDeidentifiedRepository medRepo, WorkDataRepository workRepo) {
-    this.medRepo = medRepo;
-    this.workRepo = workRepo;
-  }
+    // Autowire your de-identified repo
+    @Autowired
+    private MedDataDeidentifiedRepository medDataDiRepo;
 
-  public void performLinkageAttack() {
+  public int execute() {
+        List<Object[]> identifiedUniqueGroups = workDataRepo.findUniqueQiGroups();
 
+        List<Object[]> deidentifiedUniqueGroups = medDataDiRepo.findUniqueQiGroups();
+
+        Set<String> identifiedSet = identifiedUniqueGroups.stream()
+                .map(group -> group[0] + "-" + group[1])
+                .collect(Collectors.toSet());
+
+        Set<String> deidentifiedSet = deidentifiedUniqueGroups.stream()
+                .map(group -> group[0] + "-" + group[1])
+                .collect(Collectors.toSet());
+
+        identifiedSet.retainAll(deidentifiedSet);
+
+        return identifiedSet.size();
   }
 }
