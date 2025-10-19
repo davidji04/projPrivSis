@@ -30,16 +30,16 @@ public final class MedDataDeidentified {
   }
 
   public MedDataDeidentified(Long id,
-                    int age,
-                    String gender,
-                    String postalCode,
-                    String diagnosis) {
-        this.id = id;
-        this.age = age;
-        this.gender = gender;
-        this.postalCode = postalCode;
-        this.diagnosis = diagnosis;
-    }
+      int age,
+      String gender,
+      String postalCode,
+      String diagnosis) {
+    this.id = id;
+    this.age = age;
+    this.gender = gender;
+    this.postalCode = postalCode;
+    this.diagnosis = diagnosis;
+  }
 
   public Long getId() {
     return id;
@@ -80,8 +80,9 @@ public final class MedDataDeidentified {
   public void setDiagnosis(String diagnosis) {
     this.diagnosis = diagnosis;
   }
-  
+
   @Repository
   public interface MedDataDeidentifiedRepository extends JpaRepository<MedDataDeidentified, Long> {
+
   }
 }
