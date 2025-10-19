@@ -61,6 +61,26 @@ public final class MedDataDeidentified {
     return postalCode;
   }
 
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public void setAge(Integer age) {
+    this.age = age;
+  }
+
+  public void setGender(String gender) {
+    this.gender = gender;
+  }
+
+  public void setPostalCode(String postalCode) {
+    this.postalCode = postalCode;
+  }
+
+  public void setDiagnosis(String diagnosis) {
+    this.diagnosis = diagnosis;
+  }
+  
   @Repository
   public interface MedDataDeidentifiedRepository extends JpaRepository<MedDataDeidentified, Long> {
   }
