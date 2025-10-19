@@ -1,5 +1,9 @@
 docker run --name testPostgres -e POSTGRES_PASSWORD=password -e POSTGRES_DB=pds_proj_1 -d -p 5432:5432 postgres
 
+-- SERVER --
+mvn clean compile package
+mvn spring-boot:run
+
 -- SETUP --
 python3 -m venv .
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
