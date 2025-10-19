@@ -16,6 +16,7 @@ def main():
     META_DATA = MetaData()
     META_DATA.reflect(bind=engine)
     MED_TABLE = META_DATA.tables["med_data"]
+    MED_DI_TABLE = META_DATA.tables["med_data_di"]
     WORK_TABLE = META_DATA.tables["work_data"]
 
     with open("./Data/med.csv", 'r') as med_file:
@@ -28,6 +29,14 @@ def main():
             CONN.execute(row)
         CONN.commit()
 
+
+    with open("./Data/med_di.csv", 'r') as med_di_file:
+        med_csv = csv.reader(med_di_file)
+
+        for line in med_csv:
+            row = MED_DI_TABLE.insert().values(id=line[0], age=line[1], gender=line[2], postal_code=line[3], diagnosis=line[4])
+            CONN.execute(row)
+        CONN.commit()   
 
     with open("./Data/work.csv", 'r') as work_file:
         work_csv = csv.reader(work_file)
