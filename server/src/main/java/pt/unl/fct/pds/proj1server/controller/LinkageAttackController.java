@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import pt.unl.fct.pds.proj1server.attacks.LinkageAttackService;
+import pt.unl.fct.pds.proj1server.service.LinkageAttackService;
 
 @RestController
 @RequestMapping("/api/attack")

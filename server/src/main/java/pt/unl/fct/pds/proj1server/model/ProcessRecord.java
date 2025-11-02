@@ -1,15 +1,13 @@
-package pt.unl.fct.pds.proj1server.kanonymity;
-
-import pt.unl.fct.pds.proj1server.model.MedDataDeidentified;
+package pt.unl.fct.pds.proj1server.model;
 
 public class ProcessRecord {
-    String diagnosis; 
-    int age;
-    String gender;
-    String postalCode; 
-    MedDataDeidentified originalRecord; 
+    private String diagnosis; 
+    private int age;
+    private String gender;
+    private String postalCode; 
+    private MedDataDeidentified originalRecord; 
 
-    ProcessRecord(MedDataDeidentified original) {
+    public ProcessRecord(MedDataDeidentified original) {
         this.originalRecord = original;
         this.diagnosis = original.getDiagnosis();
         this.gender = original.getGender();
@@ -35,5 +33,19 @@ public class ProcessRecord {
             case "postalCode" -> this.postalCode;
             default -> throw new IllegalArgumentException("Dimensão desconhecida");
         };
+    }
+    public String getDiagnosis() {
+        return diagnosis;
+    }
+    public int getAge() {
+        return age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
     }
 }

@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import pt.unl.fct.pds.proj1server.kanonymity.AnonymityService;
+import pt.unl.fct.pds.proj1server.service.AnonymityService;
 
 @RestController
 @RequestMapping("/api/kanonmeddata")
