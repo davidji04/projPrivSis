@@ -10,7 +10,6 @@ public class LinkageAttackResponse {
   private double successRatePercentage;
   private List<LinkageResult> matches;
 
-  // Construtor
   public LinkageAttackResponse(int totalMatches, int totalRecords, double successRatePercentage,
       List<LinkageResult> matches) {
     this.totalMatches = totalMatches;
@@ -19,7 +18,6 @@ public class LinkageAttackResponse {
     this.matches = matches;
   }
 
-  // Getters e Setters (Necessários para serialização JSON pelo Spring)
   public int getTotalMatches() {
     return totalMatches;
   }

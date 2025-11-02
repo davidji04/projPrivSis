@@ -1,6 +1,4 @@
-from sqlalchemy import create_engine, MetaData, Table, Column, Numeric, Integer, VARCHAR, text
-from sqlalchemy.orm import scoped_session, sessionmaker
-
+from sqlalchemy import create_engine, MetaData
 import csv
 from random import randint, choice
 from datetime import datetime, timedelta
@@ -18,10 +16,12 @@ def main():
     MED_TABLE = META_DATA.tables["med_data"]
     MED_DI_TABLE = META_DATA.tables["med_data_di"]
     WORK_TABLE = META_DATA.tables["work_data"]
+    MED_KANON_TABLE = META_DATA.tables["med_data_kanon"]
     try:
         CONN.execute(MED_TABLE.delete())
         CONN.execute(MED_DI_TABLE.delete())
         CONN.execute(WORK_TABLE.delete())
+        CONN.execute(MED_KANON_TABLE.delete())
         CONN.commit()
         print("Dados existentes apagados com sucesso.")
     except Exception as e:

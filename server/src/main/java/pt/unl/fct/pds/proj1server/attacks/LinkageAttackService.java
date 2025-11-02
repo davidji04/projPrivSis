@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pt.unl.fct.pds.proj1server.repository.MedDataDeidentifiedRepository;
+import pt.unl.fct.pds.proj1server.repository.MedDataKAnonRepository;
 import pt.unl.fct.pds.proj1server.repository.WorkDataRepository;
 
 @Service
@@ -16,20 +17,29 @@ public class LinkageAttackService {
     @Autowired
     private WorkDataRepository workDataRepo;
 
-    // Autowire your de-identified repo
     @Autowired
     private MedDataDeidentifiedRepository medDataDiRepo;
 
-  public int execute() {
+    @Autowired
+    private MedDataKAnonRepository medDataKAnonRepo;
+
+  public int execute(Boolean onKanon) {
+
         List<Object[]> identifiedUniqueGroups = workDataRepo.findUniqueQiGroups();
 
-        List<Object[]> deidentifiedUniqueGroups = medDataDiRepo.findUniqueQiGroups();
+        List<Object[]> uniqueGroups;
+
+        if (onKanon) {
+            uniqueGroups = medDataKAnonRepo.findUniqueQiGroups();
+        } else {
+            uniqueGroups = medDataDiRepo.findUniqueQiGroups();
+        }
 
         Set<String> identifiedSet = identifiedUniqueGroups.stream()
                 .map(group -> group[0] + "-" + group[1])
                 .collect(Collectors.toSet());
 
-        Set<String> deidentifiedSet = deidentifiedUniqueGroups.stream()
+        Set<String> deidentifiedSet = uniqueGroups.stream()
                 .map(group -> group[0] + "-" + group[1])
                 .collect(Collectors.toSet());
 

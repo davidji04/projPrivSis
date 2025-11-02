@@ -14,9 +14,14 @@ public class LinkageAttackController {
     @Autowired
     private LinkageAttackService linkageAttackService;
 
-    @GetMapping("/linkage")
-    public String runLinkageAttack() {
-        int matches = linkageAttackService.execute();
-        return "Linkage attack complete. Found " + matches + " successful re-identifications.";
+    @GetMapping("/linkageOnDiidentified")
+    public String runLinkageAttackOnDiidentified() {
+        int matches = linkageAttackService.execute(false);
+        return "Linkage attack on De-identified data complete. Found " + matches + " successful re-identifications.";
+    }
+    @GetMapping("/linkageOnKanon")
+    public String runLinkageAttackOnKanon() {
+        int matches = linkageAttackService.execute(true);
+        return "Linkage attack on K-Anonymized data complete. Found " + matches + " successful re-identifications.";
     }
 }
