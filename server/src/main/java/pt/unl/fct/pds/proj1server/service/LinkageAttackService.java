@@ -1,4 +1,4 @@
-package pt.unl.fct.pds.proj1server.attacks;
+package pt.unl.fct.pds.proj1server.service;
 
 import java.util.List;
 import java.util.Set;
