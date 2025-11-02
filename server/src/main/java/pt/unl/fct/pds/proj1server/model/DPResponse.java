@@ -1,31 +1,32 @@
 package pt.unl.fct.pds.proj1server.model;
 
 public class DPResponse {
-  private String attributesQueried;
-  private double noisedResponse;
+  private String queried_attributes;
+  private double noised_response;
 
-  public DPResponse(String attributesQueried, double noisedResponse) {
-    this.attributesQueried = attributesQueried;
-    this.noisedResponse = noisedResponse;
+  public DPResponse(String attributesQueried, double noisedResponse, double querySensitivity,
+      double updatedPrivacyBudget) {
+    this.queried_attributes = attributesQueried;
+    this.noised_response = noisedResponse;
   }
 
   public DPResponse() {
   }
 
-  public String getAttributesQueried() {
-    return attributesQueried;
+  public String getQueried_attributes() {
+    return queried_attributes;
   }
 
-  public void setAttributesQueried(String attributesQueried) {
-    this.attributesQueried = attributesQueried;
+  public void setQueried_attributes(String attributesQueried) {
+    this.queried_attributes = attributesQueried;
   }
 
-  public double getNoisedResponse() {
-    return noisedResponse;
+  public double getNoised_response() {
+    return noised_response;
   }
 
-  public void setNoisedResponse(double noisedResponse) {
-    this.noisedResponse = noisedResponse;
+  public void setNoised_response(double noisedResponse) {
+    this.noised_response = noisedResponse;
   }
 
 }

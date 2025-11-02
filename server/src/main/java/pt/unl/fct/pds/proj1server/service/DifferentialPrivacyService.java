@@ -57,8 +57,8 @@ public class DifferentialPrivacyService {
 
   public DPResponse getNoisyCount(CountRequest request) throws PrivacyBudgetExceededException {
 
-    final double sensitivity = 1.0;
-    final double epsilonCost = this.epsilonPerCount;
+    double sensitivity = 1.0;
+    double epsilonCost = this.epsilonPerCount;
 
     privacyBudgetService.consumeBudget(epsilonCost);
 
@@ -66,17 +66,17 @@ public class DifferentialPrivacyService {
     double noisedCount = this.addLaplaceNoise((double) trueCount, sensitivity, epsilonCost);
 
     DPResponse response = new DPResponse();
-    response.setAttributesQueried("count(*)");
-    response.setNoisedResponse(noisedCount);
+    response.setQueried_attributes("count(*)");
+    response.setNoised_response(noisedCount);
     return response;
   }
 
   public DPResponse getNoisyAverage(AverageRequest request) throws PrivacyBudgetExceededException {
-    final double sensitivityCount = 1.0;
-    final double sensitivitySum = CLIP_MAX; // age is clipped between 0 and 122
-    final double totalEpsilonCost = this.epsilonPerAverage;
-    final double epsilonForCount = totalEpsilonCost;
-    final double epsilonForSum = totalEpsilonCost;
+    double sensitivityCount = 1.0;
+    double sensitivitySum = CLIP_MAX; // age is clipped between 0 and 122
+    double totalEpsilonCost = this.epsilonPerAverage;
+    double epsilonForCount = totalEpsilonCost;
+    double epsilonForSum = totalEpsilonCost;
 
     privacyBudgetService.consumeBudget(totalEpsilonCost);
 
@@ -87,8 +87,8 @@ public class DifferentialPrivacyService {
     double noisedAverage = noisedSum / noisedCount;
 
     DPResponse response = new DPResponse();
-    response.setAttributesQueried("average(age)");
-    response.setNoisedResponse(noisedAverage);
+    response.setQueried_attributes("average(age)");
+    response.setNoised_response(noisedAverage);
     return response;
   }
 
@@ -96,14 +96,14 @@ public class DifferentialPrivacyService {
 
     List<String> bins = this.genders;
 
-    final double sensitivityCount = 1.0;
-    final double sensitivitySum = CLIP_MAX;
+    double sensitivityCount = 1.0;
+    double sensitivitySum = CLIP_MAX;
 
-    final double totalEpsilonCostPerBin = this.epsilonPerHistogramBin;
-    final double epsilonForCount = totalEpsilonCostPerBin;
-    final double epsilonForSum = totalEpsilonCostPerBin;
+    double totalEpsilonCostPerBin = this.epsilonPerHistogramBin;
+    double epsilonForCount = totalEpsilonCostPerBin;
+    double epsilonForSum = totalEpsilonCostPerBin;
 
-    final double totalEpsilonCost = totalEpsilonCostPerBin * bins.size();
+    double totalEpsilonCost = totalEpsilonCostPerBin * bins.size();
 
     privacyBudgetService.consumeBudget(totalEpsilonCost);
 
@@ -122,16 +122,16 @@ public class DifferentialPrivacyService {
     }
 
     DPHistogramResponse response = new DPHistogramResponse();
-    response.setAttributesQueried("average(age) by gender");
-    response.setNoisedResponse(noisedResults);
+    response.setQueried_attributes("average(age) by gender");
+    response.setNoised_response(noisedResults);
     return response;
   }
 
   public DPHistogramResponse getNoisyCountByGender(HistogramRequest request) throws PrivacyBudgetExceededException {
 
-    final double sensitivity = 1.0;
-    final double epsilonPerBin = this.epsilonPerHistogramBin;
-    final double totalEpsilonCost = epsilonPerBin * genders.size();
+    double sensitivity = 1.0;
+    double epsilonPerBin = this.epsilonPerHistogramBin;
+    double totalEpsilonCost = epsilonPerBin * genders.size();
 
     privacyBudgetService.consumeBudget(totalEpsilonCost);
 
@@ -143,8 +143,8 @@ public class DifferentialPrivacyService {
     }
 
     DPHistogramResponse response = new DPHistogramResponse();
-    response.setAttributesQueried("count() by gender");
-    response.setNoisedResponse(noisedResults);
+    response.setQueried_attributes("count() by gender");
+    response.setNoised_response(noisedResults);
     return response;
   }
 
@@ -156,9 +156,9 @@ public class DifferentialPrivacyService {
     bins.put("40-64", new int[] { 40, 64 });
     bins.put("65+", new int[] { 65, (int) CLIP_MAX });
 
-    final double sensitivity = 1.0;
-    final double epsilonPerBin = this.epsilonPerHistogramBin;
-    final double totalEpsilonCost = epsilonPerBin * bins.size();
+    double sensitivity = 1.0;
+    double epsilonPerBin = this.epsilonPerHistogramBin;
+    double totalEpsilonCost = epsilonPerBin * bins.size();
 
     privacyBudgetService.consumeBudget(totalEpsilonCost);
 
@@ -174,8 +174,8 @@ public class DifferentialPrivacyService {
     }
 
     DPHistogramResponse response = new DPHistogramResponse();
-    response.setAttributesQueried("count() by age_range");
-    response.setNoisedResponse(noisedResults);
+    response.setQueried_attributes("count() by age_range");
+    response.setNoised_response(noisedResults);
     return response;
   }
 }

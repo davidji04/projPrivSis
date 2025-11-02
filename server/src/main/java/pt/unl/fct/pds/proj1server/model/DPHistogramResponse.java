@@ -4,24 +4,24 @@ import java.util.Map;
 
 public class DPHistogramResponse {
 
-  private String attributesQueried;
+  private String queried_attributes;
 
-  private Map<String, Double> noisedResponse;
+  private Map<String, Double> noised_response;
 
-  public String getAttributesQueried() {
-    return attributesQueried;
+  public String getQueried_attributes() {
+    return queried_attributes;
   }
 
-  public void setAttributesQueried(String attributesQueried) {
-    this.attributesQueried = attributesQueried;
+  public void setQueried_attributes(String attributesQueried) {
+    this.queried_attributes = attributesQueried;
   }
 
-  public Map<String, Double> getNoisedResponse() {
-    return noisedResponse;
+  public Map<String, Double> getNoised_response() {
+    return noised_response;
   }
 
-  public void setNoisedResponse(Map<String, Double> noisedResponse) {
-    this.noisedResponse = noisedResponse;
+  public void setNoised_response(Map<String, Double> noisedResponse) {
+    this.noised_response = noisedResponse;
   }
 
 }
