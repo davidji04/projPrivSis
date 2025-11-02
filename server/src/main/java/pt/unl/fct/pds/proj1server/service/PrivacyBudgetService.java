@@ -8,7 +8,7 @@ import jakarta.annotation.PostConstruct;
 @Service
 public class PrivacyBudgetService {
 
-  @Value("${dp.privacy.total_budget:1.0}")
+  @Value("${dp.privacy.total_budget:3.5}")
   private double totalBudget;
   private double remainingBudget = totalBudget;
 
@@ -22,12 +22,10 @@ public class PrivacyBudgetService {
       throw new PrivacyBudgetExceededException(
           "Not enough privacy budget remaining. Requested: " + amount + ", Remaining: " + this.remainingBudget);
     }
-
     this.remainingBudget -= amount;
   }
 
   public double getRemainingBudget() {
     return remainingBudget;
   }
-
 }

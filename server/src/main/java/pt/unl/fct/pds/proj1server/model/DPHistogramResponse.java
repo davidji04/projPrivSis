@@ -8,10 +8,6 @@ public class DPHistogramResponse {
 
   private Map<String, Double> noisedResponse;
 
-  private double querySensitivity;
-
-  private double updatedPrivacyBudget;
-
   public String getAttributesQueried() {
     return attributesQueried;
   }
@@ -28,19 +24,4 @@ public class DPHistogramResponse {
     this.noisedResponse = noisedResponse;
   }
 
-  public double getQuerySensitivity() {
-    return querySensitivity;
-  }
-
-  public void setQuerySensitivity(double querySensitivity) {
-    this.querySensitivity = querySensitivity;
-  }
-
-  public double getUpdatedPrivacyBudget() {
-    return updatedPrivacyBudget;
-  }
-
-  public void setUpdatedPrivacyBudget(double updatedPrivacyBudget) {
-    this.updatedPrivacyBudget = updatedPrivacyBudget;
-  }
 }
