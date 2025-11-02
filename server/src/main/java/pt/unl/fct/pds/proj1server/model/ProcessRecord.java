@@ -1,14 +1,12 @@
 package pt.unl.fct.pds.proj1server.model;
 
 public class ProcessRecord {
-    private String diagnosis; 
-    private int age;
-    private String gender;
-    private String postalCode; 
-    private MedDataDeidentified originalRecord; 
+    private final String diagnosis; 
+    private final int age;
+    private final String gender;
+    private final String postalCode; 
 
     public ProcessRecord(MedDataDeidentified original) {
-        this.originalRecord = original;
         this.diagnosis = original.getDiagnosis();
         this.gender = original.getGender();
         
