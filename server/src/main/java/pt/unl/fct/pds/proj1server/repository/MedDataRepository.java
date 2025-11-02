@@ -16,7 +16,7 @@ public interface MedDataRepository extends JpaRepository<MedData, Long> {
                         "FROM MedData m")
         Double getSumOfAgeWithClipping(@Param("min") double min, @Param("max") double max);
 
-        Long countByDiagnosis(String diagnosis); // Método para contar entradas por diagnóstico é automatico
+        Long countByDiagnosis(String diagnosis);
 
         @Query("SELECT SUM(CASE " +
                         "WHEN m.age > :max THEN :max " +
@@ -40,7 +40,6 @@ public interface MedDataRepository extends JpaRepository<MedData, Long> {
                         @Param("max") double max,
                         @Param("gender") String gender);
 
-        // --- Para o Histograma de Faixas Etárias (Baixa Cardinalidade) ---
         @Query("SELECT COUNT(m) FROM MedData m WHERE m.age >= :min AND m.age <= :max")
         Long countByAgeRange(@Param("min") int min, @Param("max") int max);
 }
